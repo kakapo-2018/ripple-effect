@@ -31,9 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <div style={{height: 100 + "vh"}} onMouseMove={this.onMouseMove.bind(this)} onClick={this.handleClick}>
-      <p>{this.state.x} {this.state.y}</p>
-        <h1>Hello World!</h1>
-        <svg>
+        <svg style={{height: 100 + "vh", width: 100 + "%"}}>
           {this.state.circles.map((circle, i) => {
             return <Circle key={i} cx={circle.cx} cy={circle.cy}/>
           })}
