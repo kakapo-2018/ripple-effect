@@ -20884,7 +20884,7 @@ var Circle = function (_React$Component) {
             return _react2.default.createElement(
                 _react2.default.Fragment,
                 null,
-                _react2.default.createElement("circle", { className: "circle", cx: this.state.cx, cy: this.state.cy, r: this.state.r, stroke: "blue", strokeWidth: "2", fill: "none", style: { opacity: this.state.o } })
+                _react2.default.createElement("circle", { className: "circle", cx: this.state.cx, cy: this.state.cy, r: this.state.r, stroke: "white", strokeWidth: "4", fill: "none", style: { opacity: this.state.o } })
             );
         }
     }]);

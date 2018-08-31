@@ -4,9 +4,30 @@
   <meta charset="utf-8" />
   <title>Ripple Effect</title>
   <link rel="stylesheet" type="text/css" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.8/css-doodle.min.js"></script>
   <script src="bundle.js"></script>
 </head>
 <body>
+  <css-doodle>
+      :doodle {
+        @grid: 50x1 / 100%;
+        @use: var(--filter);
+      }
+      :container {
+        animation: r 100s linear infinite;
+      }
+      @place-cell: center;
+      @size: 200% 2vmin;
+      background: rgb(150, 206, 224);
+      transform-origin: 1vmin center;
+      transform:
+        translateX(100%)
+        rotate(calc(@i(3) * 360deg / @size(20)));
+      
+      @keyframes r {
+        to { transform: rotate(1turn) }
+      }
+    </css-doodle>
   <div id="app"></div>
 </body>
 </html>
