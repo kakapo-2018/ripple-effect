@@ -10,7 +10,8 @@ class App extends React.Component {
       x:0,
       y:0,
       circles: [],
-      soundEffectsPlaying: false
+      soundEffectsPlaying: false,
+      shouldReRender: true
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -20,6 +21,9 @@ class App extends React.Component {
   }
 
   handleClick(event) {
+    this.setState({
+      shouldReRender: true,
+    })
     event.preventDefault()
     this.addCircle()
     this.startSound()
@@ -42,13 +46,24 @@ class App extends React.Component {
   }
 
   onMouseMove(e) {
-    if(!this.state.soundEffectsPlaying) {
+    // if(!this.state.soundEffectsPlaying) {
+    //   this.setState({
+    //     x: e.pageX,
+    //     y: e.pageY
+    //   })
+    // }
       this.setState({
         x: e.pageX,
-        y: e.pageY
+        y: e.pageY,
+        shouldReRender: false
       })
-    }
   }
+
+  shouldComponentUpdate() {
+    return this.state.shouldReRender;
+  }
+
+
 
   render() {
     return (

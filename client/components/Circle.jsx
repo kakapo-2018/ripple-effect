@@ -33,9 +33,17 @@ export default class Circle extends React.Component {
     }
 
     render() {
+        let num = 0;
         return (
             <React.Fragment>
                 <circle className="circle" cx={this.state.cx} cy={this.state.cy} r={this.state.r} stroke="blue" strokeWidth="2" fill="none" style={{opacity:this.state.o}}/>
+                {/* {this.circInterval = setInterval(()=>{
+                    num++;
+                    <circle className="circle" cx={this.state.cx} cy={this.state.cy} r={this.state.r} stroke="blue" strokeWidth="2" fill="none" style={{opacity:this.state.o}}/>
+                    {if(num>=5){
+                        clearInterval(this.circInterval)
+                    }}
+                }, 200)} */}
             </React.Fragment>
         )
     }

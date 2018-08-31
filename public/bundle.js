@@ -20730,7 +20730,8 @@ var App = function (_React$Component) {
       x: 0,
       y: 0,
       circles: [],
-      soundEffectsPlaying: false
+      soundEffectsPlaying: false,
+      shouldReRender: true
     };
 
     _this.handleClick = _this.handleClick.bind(_this);
@@ -20743,6 +20744,9 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: "handleClick",
     value: function handleClick(event) {
+      this.setState({
+        shouldReRender: true
+      });
       event.preventDefault();
       this.addCircle();
       this.startSound();
@@ -20767,12 +20771,22 @@ var App = function (_React$Component) {
   }, {
     key: "onMouseMove",
     value: function onMouseMove(e) {
-      if (!this.state.soundEffectsPlaying) {
-        this.setState({
-          x: e.pageX,
-          y: e.pageY
-        });
-      }
+      // if(!this.state.soundEffectsPlaying) {
+      //   this.setState({
+      //     x: e.pageX,
+      //     y: e.pageY
+      //   })
+      // }
+      this.setState({
+        x: e.pageX,
+        y: e.pageY,
+        shouldReRender: false
+      });
+    }
+  }, {
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate() {
+      return this.state.shouldReRender;
     }
   }, {
     key: "render",
@@ -20866,6 +20880,7 @@ var Circle = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
+            var num = 0;
             return _react2.default.createElement(
                 _react2.default.Fragment,
                 null,
@@ -20925,7 +20940,8 @@ var SoundEffects = function (_React$Component) {
     key: 'getRandomSongUrl',
     value: function getRandomSongUrl() {
       // the random stuff
-      return _songs2.default[3].url;
+      var num = Math.floor(Math.random() * 10);
+      return _songs2.default[num].url;
     }
   }, {
     key: 'render',

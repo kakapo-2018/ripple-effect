@@ -11,7 +11,8 @@ export default class SoundEffects extends React.Component {
 
   getRandomSongUrl() {
     // the random stuff
-    return songs[3].url
+    let num = Math.floor(Math.random() * 10)
+    return songs[num].url
   }
 
   render() {
