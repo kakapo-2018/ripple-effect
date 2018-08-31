@@ -4,21 +4,24 @@ import songs from '../../public/sound_bites/songs';
 
 
 
-export default class AmbientSound extends React.Component {
-    constructor(props) {
-      super(props);
-    }
+export default class SoundEffects extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-      render() {
-        return (
-          <Sound
-            url= {songs[0]}
-            playStatus={Sound.status.PLAYING}
-            playFromPosition={300 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            />
-        );
-      }
-    }
+  getRandomSongUrl() {
+    // the random stuff
+    return songs[3].url
+  }
+
+  render() {
+    return (
+      <Sound
+        url={this.getRandomSongUrl()}
+        playStatus={this.props.playing ? Sound.status.PLAYING : Sound.status.STOPPED}
+        playFromPosition={0 /* in milliseconds */}
+        onFinishedPlaying={this.props.onFinishedPlaying}
+        />
+    );
+  }
+}
