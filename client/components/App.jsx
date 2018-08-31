@@ -1,5 +1,7 @@
 import React from 'react'
 import Circle from "./Circle"
+import SoundEffects from "./SoundEffects"
+import AmbientSound from "./AmbientSound"
 
 class App extends React.Component {
   constructor(props) {
@@ -7,25 +9,45 @@ class App extends React.Component {
     this.state= {
       x:0,
       y:0,
-      circles: []
+      circles: [],
+      soundEffectsPlaying: false
     }
+
     this.handleClick = this.handleClick.bind(this)
+    this.addCircle = this.addCircle.bind(this)
+    this.startSound = this.startSound.bind(this)
+    this.stopSound = this.stopSound.bind(this)
   }
 
   handleClick(event) {
     event.preventDefault()
-    let circles = this.state.circles;
+    this.addCircle()
+    this.startSound()
+  }
+
+  addCircle() {
+    let circles = [ ...this.state.circles ];
     circles.push(
       {cx: this.state.x, cy: this.state.y}
     )
     this.setState({circles});
   }
 
+  startSound() {
+    this.setState({soundEffectsPlaying: true});
+  }
+
+  stopSound() {
+    this.setState({soundEffectsPlaying: false});
+  }
+
   onMouseMove(e) {
-    this.setState({
-      x: e.pageX,
-      y: e.pageY
-    })
+    if(!this.state.soundEffectsPlaying) {
+      this.setState({
+        x: e.pageX,
+        y: e.pageY
+      })
+    }
   }
 
   render() {
@@ -36,6 +58,8 @@ class App extends React.Component {
             return <Circle key={i} cx={circle.cx} cy={circle.cy}/>
           })}
         </svg>
+        <SoundEffects playing={this.state.soundEffectsPlaying} onFinishedPlaying={this.stopSound}/>
+        {/* <AmbientSound /> */}
       </div>
     )
   }
