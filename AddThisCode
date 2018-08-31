@@ -1,0 +1,49 @@
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.8/css-doodle.min.js"></script>
+
+    <css-doodle>
+        :doodle {
+          @grid: 50x1 / 100%;
+          @use: var(--filter);
+        }
+        :container {
+          animation: r 20s linear infinite;
+        }
+        @place-cell: center;
+        @size: 200% 2vmin;
+        background: rgb(84,130,209);
+        transform-origin: 1vmin center;
+        transform:
+          translateX(100%)
+          rotate(calc(@i(3) * 360deg / @size(20)));
+        
+        @keyframes r {
+          to { transform: rotate(1turn) }
+        }
+      </css-doodle>
+      
+        <audio>
+      <embed name="Song" src="./ambientSound/song.mp3" loop="true" hidden="true" autostart="true" type="audio/mpeg">
+  </audio>
+      
+      
+      
+      html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: rgb(90,157,230);
+  overflow: hidden;
+}
+
+:root {
+  --filter: (
+    filter: @svg-filter(<svg>
+      <filter>
+        <feTurbulence type="fractalNoise" 
+          baseFrequency=".03" numOctaves="5" />
+        <feDisplacementMap in="SourceGraphic" scale="240" />
+      </filter>
+    </svg>); 
+  );
+}
